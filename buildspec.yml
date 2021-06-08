@@ -1,20 +1,17 @@
 version: 0.2
 
 phases:
-  pre_build:
+  install:
     commands:
-      - if [ -e /tmp/node_modules.tar ]; then tar xf /tmp/node_modules.tar; fi
+      - cd app
       - npm install
   build:
     commands:
       - npm run build
   post_build:
     commands:
-      - tar cf /tmp/node_modules.tar node_modules
+      - aws s3 rm s3://shuhei-portfolio.jp --recursive
 artifacts:
   files:
     - '**/*'
-  base-directory: dist
-cache:
-  paths:
-    - /tmp/node_modules.tar
+  base-directory: 'dist'
