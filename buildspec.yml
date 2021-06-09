@@ -9,7 +9,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - aws s3 rm s3://shuhei-portfolio.jp --recursive
+      - aws s3 rm s3://shuhei-portfolio --recursive
 artifacts:
   files:
     - '**/*'
